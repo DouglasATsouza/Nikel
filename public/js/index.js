@@ -37,8 +37,8 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
 document.getElementById("create-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const email = document.getElementById("email-create-input").Value;
-    const password = document.getElementById("password-create-input").Value;
+    const email = document.getElementById("email-create-input").value;
+    const password = document.getElementById("password-create-input").value;
 
    
     saveAccount({
