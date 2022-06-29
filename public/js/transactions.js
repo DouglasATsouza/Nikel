@@ -31,28 +31,29 @@ document.getElementById("transaction-form").addEventListener("submit", function(
 
 });
 
-function checkLogged() {
+checkLogged();
+
+function checkLogged () {
     if(session) {
          sessionStorage.setItem("logged", session);
          logged = session
         }     
 
-    if(!Logged) {
+    if(!logged) {
         window.location.href = "index.html";
         return;
     }
 
     const dataUser = localStorage.getItem(logged);
-    if(dataUser) {
-        data = JSON.parse(dataUser)
-    }
+        if(dataUser) {
+           data = JSON.parse(dataUser)
+        }
 
     getTransactions();
 
-
 }
 
-function logout() {
+function logout () {
     sessionStorage.removeItem("logged");
     localStorage.removeItem("session");
 
@@ -67,7 +68,7 @@ function getTransactions () {
         transactions.forEach((item) => {
              let type = "Entrada";
 
-             if(item.type == "2") {
+             if(item.type === "2") {
                 type ="Saída";
              }
 

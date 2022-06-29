@@ -27,12 +27,14 @@ document.getElementById("transaction-form").addEventListener("submit", function(
     saveData(data);
     e.target.reset();
     myModal.hide();
-
+    
     getCashIn();
     getCashOut();
     getTotal();
 
     alert("Lançamento adicionado com sucesso.");
+
+
 
 });
 
@@ -44,7 +46,7 @@ function checkLogged() {
          logged = session
         }     
 
-    if(!Logged) {
+    if(!logged) {
         window.location.href = "index.html";
         return;
     }
@@ -81,11 +83,11 @@ function getCashIn() {
             limit = cashIn.length;
         }
 
-        for (let index = 0; index < limit.length; index++) {
+        for (let index = 0; index < limit; index++) {
             cashInHtml +=`
             <div class="row mb-4">
                     <div class="col-12">
-                        <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)})</h3>
+                        <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)}</h3>
                             <div class="container p-0">
                                 <div class="row">
                                     <div class="col-12 col-md-8">
@@ -108,7 +110,7 @@ function getCashIn() {
    
 }
 
-function getCashout() {
+function getCashOut() {
     const transactions = data.transactions;
 
     const cashIn = transactions.filter((item) => item.type === "2");
@@ -123,11 +125,11 @@ function getCashout() {
             limit = cashIn.length;
         }
 
-        for (let index = 0; index < limit.length; index++) {
+        for (let index = 0; index < limit; index++) {
             cashInHtml +=`
             <div class="row mb-4">
                     <div class="col-12">
-                        <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)})</h3>
+                        <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)}</h3>
                             <div class="container p-0">
                                 <div class="row">
                                     <div class="col-12 col-md-8">
@@ -154,8 +156,8 @@ function getTotal() {
     const transaction = data.transactions;
     let total = 0;
 
-    transaction.forEach((item) =>{
-        if(item.type == "1") {
+    transaction.forEach((item) => {
+        if(item.type === "1") {
             total += item.value;
         } else {
             total -= item.value;
